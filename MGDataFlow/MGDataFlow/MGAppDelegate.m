@@ -7,11 +7,14 @@
 //
 
 #import "MGAppDelegate.h"
+#import "MagicalRecord.h"
+#import "MagicalRecord+Setup.h"
 
 @implementation MGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"df.sqlite"];
     // Override point for customization after application launch.
     return YES;
 }

@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MGViewController : UIViewController
+- (IBAction)createEntity:(id)sender;
+- (IBAction)getEntity:(id)sender;
+- (IBAction)deleteEntity:(id)sender;
 
 @end
