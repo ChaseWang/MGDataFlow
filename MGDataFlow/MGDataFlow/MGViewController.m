@@ -28,7 +28,7 @@
 }
 
 - (IBAction)createEntity:(id)sender {
-
+    
     NSManagedObjectContext *mc = [NSManagedObjectContext MR_contextForCurrentThread];
     for (int i = 0; i < 1000; i++) {
         Person *p = [Person MR_createInContext:mc];
@@ -39,12 +39,16 @@
 }
 
 - (IBAction)getEntity:(id)sender {
-    NSManagedObjectContext *mc = [NSManagedObjectContext MR_contextForCurrentThread];
-    NSArray *array = [Person MR_findAllInContext:mc];
-    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Person *p = obj;
-        NSLog(@"%@",p.number);
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        while (YES) {
+            NSManagedObjectContext *mc = [NSManagedObjectContext MR_contextForCurrentThread];
+            NSArray *array = [Person MR_findAllInContext:mc];
+            [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                Person *p = obj;
+                NSLog(@"%@",p.number);
+            }];
+        }
+    });
 }
 
 - (IBAction)deleteEntity:(id)sender {
