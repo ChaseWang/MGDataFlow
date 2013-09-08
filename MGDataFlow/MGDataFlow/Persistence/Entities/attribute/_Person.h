@@ -11,11 +11,13 @@ extern const struct PersonAttributes {
 } PersonAttributes;
 
 extern const struct PersonRelationships {
+	__unsafe_unretained NSString *phone;
 } PersonRelationships;
 
 extern const struct PersonFetchedProperties {
 } PersonFetchedProperties;
 
+@class NSManagedObject;
 
 
 
@@ -58,6 +60,13 @@ extern const struct PersonFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSManagedObject* phone;
+
+//- (BOOL)validatePhone:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -84,6 +93,11 @@ extern const struct PersonFetchedProperties {
 - (void)setPrimitivePid:(NSString*)value;
 
 
+
+
+
+- (NSManagedObject*)primitivePhone;
+- (void)setPrimitivePhone:(NSManagedObject*)value;
 
 
 @end

@@ -10,6 +10,7 @@ const struct PersonAttributes PersonAttributes = {
 };
 
 const struct PersonRelationships PersonRelationships = {
+	.phone = @"phone",
 };
 
 const struct PersonFetchedProperties PersonFetchedProperties = {
@@ -68,6 +69,10 @@ const struct PersonFetchedProperties PersonFetchedProperties = {
 
 
 
+
+@dynamic phone;
+
+	
 
 
 

@@ -4,8 +4,13 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="phone" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Phone" inverseName="person" inverseEntity="Phone" syncable="YES"/>
+    </entity>
+    <entity name="Phone" syncable="YES">
+        <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="phone" inverseEntity="Person" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Person" positionX="160" positionY="192" width="128" height="88"/>
+        <element name="Person" positionX="-56" positionY="81" width="128" height="103"/>
+        <element name="Phone" positionX="162" positionY="216" width="128" height="58"/>
     </elements>
 </model>
