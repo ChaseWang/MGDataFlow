@@ -55,16 +55,24 @@
 }
 
 - (IBAction)deleteEntity:(id)sender {
-    dispatch_queue_t startupQueue = dispatch_queue_create("com.renren.concept.startup", NULL);
-    dispatch_async(startupQueue, ^{
+    //dispatch_queue_t startupQueue = dispatch_queue_create("com.renren.concept.startup", NULL);
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSManagedObjectContext *mc = [NSManagedObjectContext MR_contextForCurrentThread];
-        [Person MR_deleteAllMatchingPredicate:nil inContext:mc];
+        //[Person MR_deleteAllMatchingPredicate:nil inContext:mc];
         NSArray *array = [Person MR_findAllInContext:mc];
         [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             Person *p = obj;
             [p MR_deleteInContext:mc];
         }];
-        [mc MR_saveToPersistentStoreAndWait];
+        
+        [mc MR_saveOnlySelfAndWait];
+
+        for (int i = 0; i < 10000; i++) {
+            Person *p = [Person MR_createInContext:mc];
+            p.name = @"one";
+            p.number = [NSString stringWithFormat:@"%d",i];
+        }
+        [mc MR_saveOnlySelfAndWait];
     });
 }
 
