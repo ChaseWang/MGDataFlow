@@ -39,30 +39,16 @@
 }
 
 - (IBAction)getEntity:(id)sender {
-
-    dispatch_queue_t startupQueue = dispatch_queue_create("com.renren.concept.startup", NULL);
-    dispatch_async(startupQueue, ^{
-        NSManagedObjectContext *mc = [NSManagedObjectContext MR_contextForCurrentThread];
-        [Person MR_deleteAllMatchingPredicate:nil inContext:mc];
-        //        NSArray *array = [Person MR_findAllInContext:mc];
-        //        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        //            Person *p = obj;
-        //            [p MR_deleteInContext:mc];
-        //        }];
-        [mc MR_saveToPersistentStoreAndWait];
-    });
-
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        while (YES) {
-            NSManagedObjectContext *mc = [NSManagedObjectContext MR_contextForCurrentThread];
-            NSArray *array = [Person MR_findAllInContext:mc];
-            [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                Person *p = obj;
-                //NSLog(@"%@",p.number);
-                [self convertEntity:p];
-            }];
-        }
+        NSManagedObjectContext *mc = [NSManagedObjectContext MR_contextForCurrentThread];
+        NSLog(@"begin fetch.");
+        NSArray *array = [Person MR_findAllInContext:mc];
+        NSLog(@"count:%d",array.count);
+        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            Person *p = obj;
+            [self convertEntity:p];
+        }];
+        NSLog(@"end fetch.");
     });
 
   
@@ -73,17 +59,18 @@
     dispatch_async(startupQueue, ^{
         NSManagedObjectContext *mc = [NSManagedObjectContext MR_contextForCurrentThread];
         [Person MR_deleteAllMatchingPredicate:nil inContext:mc];
-//        NSArray *array = [Person MR_findAllInContext:mc];
-//        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            Person *p = obj;
-//            [p MR_deleteInContext:mc];
-//        }];
+        NSArray *array = [Person MR_findAllInContext:mc];
+        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            Person *p = obj;
+            [p MR_deleteInContext:mc];
+        }];
         [mc MR_saveToPersistentStoreAndWait];
     });
 }
 
 - (void)convertEntity:(Person *)p
 {
-    NSLog(@"%@",p.number);
+    NSString *name = p.name;
+    NSNumber *number = p.number;
 }
 @end
