@@ -8,6 +8,7 @@
 
 #import "MGViewController.h"
 #import "Person.h"
+#import "Phone.h"
 
 @interface MGViewController ()
 
@@ -30,10 +31,15 @@
 - (IBAction)createEntity:(id)sender {
     
     NSManagedObjectContext *mc = [NSManagedObjectContext MR_contextForCurrentThread];
-    for (int i = 0; i < 10000; i++) {
+    for (int i = 0; i < 100; i++) {
         Person *p = [Person MR_createInContext:mc];
-        p.name = @"one";
-        p.number = [NSString stringWithFormat:@"%d",i];
+        p.name = @"name";
+        p.pid = [NSString stringWithFormat:@"%d",i];
+        for (int j = 0; j < 10; j++) {
+            Phone *ph = [Phone MR_createEntity];
+            ph.number = [NSString stringWithFormat:@"ph%d",j];
+            [p.phoneSet addObject:ph];
+        }
     }
     [mc MR_saveToPersistentStoreAndWait];
 }
@@ -55,30 +61,21 @@
 }
 
 - (IBAction)deleteEntity:(id)sender {
-    //dispatch_queue_t startupQueue = dispatch_queue_create("com.renren.concept.startup", NULL);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSManagedObjectContext *mc = [NSManagedObjectContext MR_contextForCurrentThread];
-        //[Person MR_deleteAllMatchingPredicate:nil inContext:mc];
-        NSArray *array = [Person MR_findAllInContext:mc];
-        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            Person *p = obj;
-            [p MR_deleteInContext:mc];
-        }];
-        
-        [mc MR_saveOnlySelfAndWait];
-
-        for (int i = 0; i < 10000; i++) {
-            Person *p = [Person MR_createInContext:mc];
-            p.name = @"one";
-            p.number = [NSString stringWithFormat:@"%d",i];
-        }
-        [mc MR_saveOnlySelfAndWait];
+        [Person MR_deleteAllMatchingPredicate:nil inContext:mc];
+        [mc MR_saveToPersistentStoreAndWait];
     });
 }
 
 - (void)convertEntity:(Person *)p
 {
-    NSString *name = p.name;
-    NSNumber *number = p.number;
+    NSString *number = p.pid;
+    NSLog(@"pid:%@",number);
+    [p.phone enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Phone *p = obj;
+        NSLog(@"phone:%@",p.number);
+    }];
+    
 }
 @end

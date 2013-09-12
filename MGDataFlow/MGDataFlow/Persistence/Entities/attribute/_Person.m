@@ -5,7 +5,6 @@
 
 const struct PersonAttributes PersonAttributes = {
 	.name = @"name",
-	.number = @"number",
 	.pid = @"pid",
 };
 
@@ -56,13 +55,6 @@ const struct PersonFetchedProperties PersonFetchedProperties = {
 
 
 
-@dynamic number;
-
-
-
-
-
-
 @dynamic pid;
 
 
@@ -72,6 +64,15 @@ const struct PersonFetchedProperties PersonFetchedProperties = {
 
 @dynamic phone;
 
+	
+- (NSMutableOrderedSet*)phoneSet {
+	[self willAccessValueForKey:@"phone"];
+  
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"phone"];
+  
+	[self didAccessValueForKey:@"phone"];
+	return result;
+}
 	
 
 

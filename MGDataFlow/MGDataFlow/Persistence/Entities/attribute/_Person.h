@@ -6,7 +6,6 @@
 
 extern const struct PersonAttributes {
 	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *number;
 	__unsafe_unretained NSString *pid;
 } PersonAttributes;
 
@@ -17,8 +16,7 @@ extern const struct PersonRelationships {
 extern const struct PersonFetchedProperties {
 } PersonFetchedProperties;
 
-@class NSManagedObject;
-
+@class Phone;
 
 
 
@@ -43,14 +41,6 @@ extern const struct PersonFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* number;
-
-
-//- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
-
-
-
-
 @property (nonatomic, strong) NSString* pid;
 
 
@@ -60,9 +50,9 @@ extern const struct PersonFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSManagedObject* phone;
+@property (nonatomic, strong) NSOrderedSet* phone;
 
-//- (BOOL)validatePhone:(id*)value_ error:(NSError**)error_;
+- (NSMutableOrderedSet*)phoneSet;
 
 
 
@@ -71,6 +61,11 @@ extern const struct PersonFetchedProperties {
 @end
 
 @interface _Person (CoreDataGeneratedAccessors)
+
+- (void)addPhone:(NSOrderedSet*)value_;
+- (void)removePhone:(NSOrderedSet*)value_;
+- (void)addPhoneObject:(Phone*)value_;
+- (void)removePhoneObject:(Phone*)value_;
 
 @end
 
@@ -83,12 +78,6 @@ extern const struct PersonFetchedProperties {
 
 
 
-- (NSString*)primitiveNumber;
-- (void)setPrimitiveNumber:(NSString*)value;
-
-
-
-
 - (NSString*)primitivePid;
 - (void)setPrimitivePid:(NSString*)value;
 
@@ -96,8 +85,8 @@ extern const struct PersonFetchedProperties {
 
 
 
-- (NSManagedObject*)primitivePhone;
-- (void)setPrimitivePhone:(NSManagedObject*)value;
+- (NSMutableOrderedSet*)primitivePhone;
+- (void)setPrimitivePhone:(NSMutableOrderedSet*)value;
 
 
 @end

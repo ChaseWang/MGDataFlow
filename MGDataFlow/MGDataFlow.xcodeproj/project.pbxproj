@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		932D812A17E1B2BC00291341 /* _Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 932D812917E1B2BC00291341 /* _Phone.m */; };
+		932D812D17E1B2C300291341 /* Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 932D812C17E1B2C300291341 /* Phone.m */; };
 		934AD6E017CB3225007414DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934AD6DF17CB3225007414DA /* UIKit.framework */; };
 		934AD6E217CB3225007414DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934AD6E117CB3225007414DA /* Foundation.framework */; };
 		934AD6E417CB3225007414DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934AD6E317CB3225007414DA /* CoreGraphics.framework */; };
@@ -51,6 +53,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		932D812817E1B2BC00291341 /* _Phone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Phone.h; sourceTree = "<group>"; };
+		932D812917E1B2BC00291341 /* _Phone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Phone.m; sourceTree = "<group>"; };
+		932D812B17E1B2C300291341 /* Phone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phone.h; sourceTree = "<group>"; };
+		932D812C17E1B2C300291341 /* Phone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phone.m; sourceTree = "<group>"; };
 		934AD6DC17CB3225007414DA /* MGDataFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGDataFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		934AD6DF17CB3225007414DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		934AD6E117CB3225007414DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -323,6 +329,8 @@
 		934AD76617CB365D007414DA /* attribute */ = {
 			isa = PBXGroup;
 			children = (
+				932D812817E1B2BC00291341 /* _Phone.h */,
+				932D812917E1B2BC00291341 /* _Phone.m */,
 				934AD76B17CB36C2007414DA /* _Person.h */,
 				934AD76C17CB36C2007414DA /* _Person.m */,
 			);
@@ -332,6 +340,8 @@
 		934AD76717CB365D007414DA /* implementation */ = {
 			isa = PBXGroup;
 			children = (
+				932D812B17E1B2C300291341 /* Phone.h */,
+				932D812C17E1B2C300291341 /* Phone.m */,
 				934AD76E17CB36CA007414DA /* Person.h */,
 				934AD76F17CB36CA007414DA /* Person.m */,
 			);
@@ -454,6 +464,8 @@
 				934AD76A17CB365D007414DA /* Model.xcdatamodeld in Sources */,
 				934AD76D17CB36C2007414DA /* _Person.m in Sources */,
 				934AD77017CB36CA007414DA /* Person.m in Sources */,
+				932D812A17E1B2BC00291341 /* _Phone.m in Sources */,
+				932D812D17E1B2C300291341 /* Phone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +590,7 @@
 				934AD70117CB3225007414DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
